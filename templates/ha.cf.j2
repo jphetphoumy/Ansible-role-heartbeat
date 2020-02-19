@@ -2,6 +2,6 @@ node {{ hostvars[groups['heartbeat_group'][0]]['ansible_hostname'] }}
 ucast eth0 {{ groups['heartbeat_group'][0] }}
 
 node {{ hostvars[groups['heartbeat_group'][1]]['ansible_hostname'] }} 
-ucast eth1 {{ groups['heartbeat_group'][1] }}
+ucast eth0 {{ groups['heartbeat_group'][1] }}
 
 auto_failback on
