@@ -1,0 +1,7 @@
+---
+- name: Configuration | ha.cf
+  template:
+    src: ha.cf.j2
+    dest: /etc/ha.d/ha.cf
+  notify: "Restart heartbeat"
+  when: "'heartbeat_group' in groups"

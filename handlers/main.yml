@@ -1,0 +1,6 @@
+---
+# handlers file for heartbeat
+- name: Restart heartbeat
+  systemd:
+    name: heartbeat
+    state: restarted

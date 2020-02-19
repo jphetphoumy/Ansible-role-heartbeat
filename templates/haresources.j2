@@ -1,0 +1,1 @@
+{{ hostvars[groups['heartbeat_group'][0]]['ansible_hostname'] }} assign-ip drbddisk::r0 Filesystem::/dev/drbd0::/data::ext4::noatime {{ services | join(' ')}}

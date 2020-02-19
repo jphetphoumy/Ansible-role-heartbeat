@@ -1,0 +1,9 @@
+---
+- name: Configuration | haresources
+  template:
+    src: haresources.j2
+    dest: /etc/ha.d/haresources
+    mode: '0600'
+    owner: 'root'
+    group: 'root'
+  when: "'heartbeat_group' in groups"

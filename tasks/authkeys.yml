@@ -1,0 +1,24 @@
+---
+- name: Configuration | Configure Authkeys
+  stat:
+    path: /etc/ha.d/authkeys
+  register: _stat_authkeys
+
+- name: Config | Creater Authkeys
+  shell: dd if=/dev/urandom count=4 2>/dev/null | openssl dgst -sha1 | awk '{ print $2 }'
+  register: _drbd_heartbeat_authkeys
+  when: _stat_authkeys.stat.exists == false
+
+- name: Config | Set fact
+  set_fact:
+    drbd_heartbeat_authkeys: "{{ _drbd_heartbeat_authkeys['stdout'] }}"
+  when: _stat_authkeys.stat.exists == false
+
+- name: Install Authkeys
+  template:
+    src: authkeys.j2
+    dest: /etc/ha.d/authkeys
+    mode: '0600'
+    owner: 'root'
+    group: 'root'
+  when: _stat_authkeys.stat.exists == false
