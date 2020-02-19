@@ -3,6 +3,9 @@
 - name: Install | Install heartbeat package
   import_tasks: install_heartbeat.yml 
 
+- name: Installation | Assign-ip resource
+  import_tasks: floating_ip.yml
+
 - name: Configuration | Configure ha.cf file
   import_tasks: configure_hacf.yml
 
@@ -12,8 +15,6 @@
 - name: Configuration | Configure haresources
   import_tasks: haresources.yml
 
-- name: Installation | Assign-ip resource
-  import_tasks: floating_ip.yml
 
 - name: Enable Heartbeat service
   systemd:
