@@ -13,7 +13,7 @@
   import_tasks: haresources.yml
 
 - name: Installation | Assign-ip resource
-  imoprt_tasks: floating_ip.yml
+  import_tasks: floating_ip.yml
 
 - name: Enable Heartbeat service
   systemd:
