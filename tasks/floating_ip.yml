@@ -1,7 +1,4 @@
-- name: Stat service | Assign-ip
-  stat: /etc/init.d/assign-ip
-  register: _stat_assign_ip
-
+---
 - name: Floating ip | Assign ip script
   copy:
     src: assign-ip
@@ -17,4 +14,4 @@
       mode: '0755'
       owner: 'root'
       group: 'root'
-  when: _stat_assign_ip.stat.exists == false
+  when: "'floating_ip' in groups" 
