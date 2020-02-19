@@ -1,0 +1,20 @@
+- name: Stat service | Assign-ip
+  stat: /etc/init.d/assign-ip
+  register: _stat_assign_ip
+
+- name: Floating ip | Assign ip script
+  copy:
+    src: assign-ip
+    dest: /usr/local/bin/assign-ip
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Systemd | Create systemd service
+  template:
+      src: assign-ip.service.j2
+      dest: /etc/init.d/assign-ip
+      mode: '0755'
+      owner: 'root'
+      group: 'root'
+  when: _stat_assign_ip.stat.exists == false
